@@ -12,8 +12,8 @@ var dicon *app.DIContainer
 func init() {
 	// テストコードでは、ここをモックに差し替えることで冪等性を担保したコードにする
 	dicon = app.NewDIContainer()
-	dicon.RegistFactory(app.CloudSQLAccessor, app.CloudSQLAccessorFactory)
-	dicon.RegistFactory(app.CloudPubSubAccessor, app.CloudPubSubAccessorFactory)
+	dicon.RegisterFactory(app.CloudSQLAccessor, app.CloudSQLAccessorFactory)
+	dicon.RegisterFactory(app.CloudPubSubAccessor, app.CloudPubSubAccessorFactory)
 }
 
 func main() {

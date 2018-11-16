@@ -10,14 +10,13 @@ import "github.com/sky0621/go-di/infrastructure"
 // StoreKey ... コンテナ格納時のキー
 type StoreKey int
 
-// CloudSQLAccessor ...
-var CloudSQLAccessor StoreKey = 1
+const (
+	// CloudSQLAccessor ...
+	CloudSQLAccessor StoreKey = iota
 
-// CloudPubSubAccessor ...
-var CloudPubSubAccessor StoreKey = 2
-
-// XXXXEndpointAccessor ...
-var XXXXEndpointAccessor StoreKey = 3
+	// CloudPubSubAccessor ...
+	CloudPubSubAccessor
+)
 
 // -------------------------------------------------------------------------
 // DIコンテナに格納するFactory（外部依存ロジックの注入関数）
@@ -64,8 +63,8 @@ type DIContainer struct {
 	container map[StoreKey]Factory
 }
 
-// RegistFactory ... main関数でのみ呼ばれることを想定しているが、それを強制しているわけではないので堅牢とは言えない
-func (c *DIContainer) RegistFactory(k StoreKey, f Factory) {
+// RegisterFactory ... main関数でのみ呼ばれることを想定しているが、それを強制しているわけではないので堅牢とは言えない
+func (c *DIContainer) RegisterFactory(k StoreKey, f Factory) {
 	c.container[k] = f
 }
 
